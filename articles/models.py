@@ -1,3 +1,4 @@
+from email.policy import default
 from logging.handlers import SYSLOG_UDP_PORT
 from turtle import title
 from django.db import models
@@ -8,6 +9,7 @@ class Article(models.Model):
     slug = models.SlugField()
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
+    thumb = models.ImageField(default='default.png', blank=True)
 
 
     def __str__(self):
