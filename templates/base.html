@@ -13,6 +13,20 @@
 
 <body>
     <h1> <a href="{% url 'list'%}"><img src="{% static 'logo.svg'%}" alt="Devews" width="100"></a></h1>
+    <span>
+        <nav>
+            <ul>
+                <li>
+                    <form action="/accounts/logout/" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                    
+                    
+                </li>
+            </ul>
+        </nav>
+    </span>
     {% block content%}
     {% endblock %}
 
