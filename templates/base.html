@@ -13,7 +13,9 @@
 
 <body>
     <h1> <a href="{% url 'list'%}"><img src="{% static 'logo.svg'%}" alt="Devews" width="100"></a></h1>
-    <span>
+    
+    <header>
+        {% if user.is_authenticated %}
         <nav>
             <ul>
                 <li>
@@ -24,9 +26,49 @@
                     
                     
                 </li>
+                <li>
+                    <form action="/articles/create/" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Create Article</button>
+                    </form>
+                    
+                    
+                </li>
             </ul>
         </nav>
-    </span>
+        {% else %}
+        <!-- <nav>
+            <ul>
+                <li>
+                    <a href="/accounts/login/">
+                    <button >
+                        Login
+                    </button>
+                    </a>
+                </li>
+            </ul>
+        </nav> -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="/accounts/signup/">
+                    <button >
+                        signup
+                    </button>
+                    </a>
+                </li>
+                <li>
+                    <a href="/accounts/login/">
+                        <button >
+                            Login
+                        </button>
+                        </a>
+
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+    </header>
     {% block content%}
     {% endblock %}
 
